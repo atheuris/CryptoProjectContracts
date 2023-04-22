@@ -45,7 +45,8 @@
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
-
+require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -64,11 +65,17 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 7545,            // Standard Ethereum port (default: none)
-     network_id: "*", // Match any network id
-    },
+    goerli: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/7005a3a8653c4819840c862e01b0ce94"),
+      network_id: 5,       // Goerli's id
+      gas: 8000000,        // Gas limit used for deploys
+      gasPrice: 10000000000 // 10 gwei (in wei)
+    }
+    // development: {
+    //  host: "127.0.0.1",     // Localhost (default: none)
+    //  port: 7545,            // Standard Ethereum port (default: none)
+    //  network_id: "*", // Match any network id
+    // },
     //
     // An additional network, but with some advanced options…
     // advanced: {

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
-const FeeToken = artifacts.require("FeeToken");
+const TaxedToken = artifacts.require("TaxedToken");
 
-module.exports = function (deployer) {
-  deployer.deploy(FeeToken);
+module.exports = async function (deployer) {
+
+  await deployer.deploy(TaxedToken);
 };
